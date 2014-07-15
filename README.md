@@ -1,4 +1,4 @@
-send-hostname-on-reboot-via-mail
+Send IP via mail @reboot
 ================================
 
 Invia una mail ad ogni riavvio del sistema contenente l'IP della macchina
@@ -15,7 +15,7 @@ Usage
 
 Per conoscere il proprio IP eseguire lo script:
 
-    sh printHostName.sh
+    sh printIP.sh
 
 Per creare un crontab che segnali il nuovo IP della macchina dopo il riavvio ad un recipiente di indirizzi email, eseguite:
 
