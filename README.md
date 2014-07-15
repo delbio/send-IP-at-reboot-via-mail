@@ -7,6 +7,7 @@ Configurazione di sendmail
 ==========================
 
 Per configurare il comando sendmail, di modo che invii email a nome del vostro account gmail, seguite questa guida
+
 http://linuxconfig.org/configuring-gmail-as-sendmail-email-relay
   
 Usage
@@ -31,5 +32,6 @@ Nota: eseguire il comando precedente nella cartella del progetto, per rispettare
 Maggiori informazioni
 =====================
 Per Maggiori informazioni su crontab:
+
 http://guide.debianizzati.org/index.php/Utilizzo_del_servizio_di_scheduling_Cron#Stringhe_speciali
 http://it.wikipedia.org/wiki/Crontab
