@@ -1,4 +1,12 @@
 
+min_args=1
+
+if (( $# < ${min_args} ))
+then
+    echo "Errore recipient fie needed"
+    exit
+fi
+
 recipient_file=${1}
 
 if [ ! -f $recipient_file ];
