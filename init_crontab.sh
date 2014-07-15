@@ -3,7 +3,7 @@ min_args=1
 
 if (( $# < ${min_args} ))
 then
-    echo "Errore recipient fie needed"
+    echo "Errore recipient file is needed"
     exit
 fi
 
