@@ -28,3 +28,9 @@ Per testare il funzionamento basta eseguire:
 riverete una mail appena la macchina è disponibile.
 
 Nota: eseguire il comando precedente nella cartella del progetto, per rispettare i riferimenti tra script
+
+Maggiori informazioni
+=====================
+
+    http://guide.debianizzati.org/index.php/Utilizzo_del_servizio_di_scheduling_Cron#Stringhe_speciali
+    http://it.wikipedia.org/wiki/Crontab
