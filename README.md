@@ -17,8 +17,14 @@ Per conoscere il proprio IP eseguire lo script:
 
     sh printHostName.sh
 
-Per automatizzare la rilevazione e la segnalazione, è possibile eseguire il segguente script, il quale inizializza un nuovo crontab:
+Per creare un crontab che segnali il nuovo IP della macchina dopo il riavvio ad un recipiente di indirizzi email, eseguite:
 
-    bash init_crontab.sh
+    bash init_crontab.sh $(pwd)/recipient
+
+Per testare il funzionamento basta eseguire:
+
+    sudo reboot
+    
+riverete una mail appena la macchina è disponibile.
 
 Nota: eseguire il comando precedente nella cartella del progetto, per rispettare i riferimenti tra script
