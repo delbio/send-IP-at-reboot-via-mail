@@ -18,7 +18,7 @@ function sendMailFromRecipientFile() {
                 echo "Send mail to: $target"
 
                 subject="New HostName"
-                sh printIP.sh | mail -s "${subject}" ${target}
+                sh printIP.sh 2<&1 | mail -s "${subject}" ${target}
         done < $recipient_file
 }
 
