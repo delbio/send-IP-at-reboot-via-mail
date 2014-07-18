@@ -58,15 +58,24 @@ function sendMailFromRecipientFile() {
         fi
 
         connectionIsReady
-        
-        while read email
-        do
-                target=$email
 
-                echo "Send mail to: $target"
-                subject="New IP"
-                sh printIP.sh 2<&1 | mail -s "${subject}" ${target}
-        done < $recipient_file
+	_IP=$(hostname -I) || false
+
+        if [ "$_IP" ]; then
+            echo "$_IP"
+
+            while read email
+            do
+                    target=$email
+                    echo "Send mail to: $target"
+                    subject="New IP"
+                    printf "My IP address is %s\n" "$_IP" | mail -s "${subject}" ${target}
+            done < $recipient_file
+
+        else
+            echo "No ip found ... exit"
+        fi 
+        
 }
 
 if [ -n "$1" ];
