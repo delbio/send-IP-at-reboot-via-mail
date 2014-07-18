@@ -47,8 +47,8 @@ function sendMailFromRecipientFile() {
                 exit
         fi
 
-        connectionIsReady
-        echo "Rete dispobile ;)"
+        #connectionIsReady
+        #echo "Rete dispobile ;)"
         
         while read email
         do
