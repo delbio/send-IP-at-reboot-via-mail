@@ -19,7 +19,7 @@ function testConnection()
 
 function connectionIsReady()
 {
-    	GUARD=true
+    GUARD=true
 
 	if $(testConnection wlan0) || $(testConnection eth0); then
 		GUARD=false
@@ -28,22 +28,22 @@ function connectionIsReady()
 	COUNTER=0
 	MAX_ATTEMPTS=4
 	SLEEP_TIME=10
-	
-	sleep $SLEEP_TIME;
 
-    	while $GUARD; do
-        	if [ $GUARD ]; then
+	while $GUARD; do
+        echo "The counter is ${COUNTER}, sleep ${SLEEP_TIME}s before next attempts ..."
+        sleep $SLEEP_TIME;	
+
+        if [ $GUARD ]; then
 		    echo "Rete non disponibile ..."
 		else
 		    echo "Rete dispobile ;)"
 		fi  
 
-		if $(testConnection wlan0) || $(testConnection eth0) || $COUNTER -lt $MAX_ATTEMPTS ; then
-		   GUARD=false
+		if $(testConnection wlan0) || $(testConnection eth0) || [ $COUNTER -eq $MAX_ATTEMPTS ] ; then
+            GUARD=false
+            echo "Connection ready or max attemps"
 		else
-			echo "The counter is ${COUNTER}, sleep ${SLEEP_TIME}s before next attempts ..."
-        		let COUNTER=COUNTER+1
-        		sleep $SLEEP_TIME;	
+            let COUNTER=COUNTER+1
 		fi
 	done
 }
@@ -58,7 +58,6 @@ function sendMailFromRecipientFile() {
         fi
 
         connectionIsReady
-        echo "Rete dispobile ;)"
         
         while read email
         do
