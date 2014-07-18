@@ -19,22 +19,32 @@ function testConnection()
 
 function connectionIsReady()
 {
-    	COUNTER=true
+    	GUARD=true
 
 	if $(testConnection wlan0) || $(testConnection eth0); then
-		COUNTER=false
+		GUARD=false
 	fi
 
-    	while $COUNTER; do
-        	if [ $COUNTER ]; then
+	COUNTER=0
+	MAX_ATTEMPTS=4
+	SLEEP_TIME=10
+	
+	sleep $SLEEP_TIME;
+
+    	while $GUARD; do
+        	if [ $GUARD ]; then
 		    echo "Rete non disponibile ..."
 		else
 		    echo "Rete dispobile ;)"
 		fi  
 
-		if $(testConnection wlan0) || $(testConnection eth0); then
-		   COUNTER=false
-		fi  
+		if $(testConnection wlan0) || $(testConnection eth0) || $COUNTER -lt $MAX_ATTEMPTS ; then
+		   GUARD=false
+		else
+			echo "The counter is ${COUNTER}, sleep ${SLEEP_TIME}s before next attempts ..."
+        		let COUNTER=COUNTER+1
+        		sleep $SLEEP_TIME;	
+		fi
 	done
 }
 
