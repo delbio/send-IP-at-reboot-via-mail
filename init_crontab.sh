@@ -15,7 +15,9 @@ then
         exit
 fi
 
-command="cd $(pwd); bash sendIP.sh ${recipient_file}"
+#debug_command="cd $(pwd); sudo bash sendIP.sh ${recipient_file} 2<&1 >> $(pwd)/debug-ip.txt"
+
+command="cd $(pwd); sudo bash sendIP.sh ${recipient_file}"
 job="@reboot ${command}"
-cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
-crontab -l
+cat <(fgrep -i -v "$command" <(sudo crontab -l)) <(echo "$job") | sudo crontab -
+sudo crontab -l
