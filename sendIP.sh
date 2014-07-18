@@ -60,4 +60,6 @@ if [ -n "$1" ];
 then
 	echo "Send Mail from recipients"
 	sendMailFromRecipientFile $1
+else
+    echo "[ usage ] recipient file needed: bash $0 recipient"
 fi
