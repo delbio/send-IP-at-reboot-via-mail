@@ -9,8 +9,8 @@ function testConnection()
 #    echo "Test connection for network device $1"
     local it="indirizzo inet:"
     local en="inet addr:"
-    local pattern_match=$it
-    if ifconfig ${1} 2<&1 | grep -q "$it" ; then
+    local pattern_match=$en
+    if ifconfig ${1} 2<&1 | grep -q "$pattern_match" ; then
         echo "true"
     else
         echo "false"
@@ -19,20 +19,24 @@ function testConnection()
 
 function connectionIsReady()
 {
-    COUNTER=true
-    while $COUNTER; do
-        if [ $COUNTER ]; then
-            echo "Rete non disponibile ..."
-        else
-            echo "Rete dispobile ;)"
-        fi  
+    	COUNTER=true
 
-        if $(testConnection wlan0) || $(testConnection eth0); then
-           COUNTER=false
-        fi  
-    done
+	if $(testConnection wlan0) || $(testConnection eth0); then
+		COUNTER=false
+	fi
+
+    	while $COUNTER; do
+        	if [ $COUNTER ]; then
+		    echo "Rete non disponibile ..."
+		else
+		    echo "Rete dispobile ;)"
+		fi  
+
+		if $(testConnection wlan0) || $(testConnection eth0); then
+		   COUNTER=false
+		fi  
+	done
 }
-echo "Rete dispobile ;)"
 
 function sendMailFromRecipientFile() {
         recipient_file=${1}
