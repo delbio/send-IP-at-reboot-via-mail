@@ -6,7 +6,7 @@ set -e # exit on error
 
 function testConnection()
 {
-#    echo "Test connection for network device $1"
+#    echo "Connection test for network device $1"
     local it="indirizzo inet:"
     local en="inet addr:"
     local pattern_match=$en
@@ -30,13 +30,13 @@ function connectionIsReady()
 	SLEEP_TIME=10
 
 	while $GUARD; do
-        echo "The counter is ${COUNTER}, sleep ${SLEEP_TIME}s before next attempts ..."
+        echo "The counter is ${COUNTER}, sleep ${SLEEP_TIME}s before next attempt ..."
         sleep $SLEEP_TIME;	
 
         if [ $GUARD ]; then
 		    echo "Rete non disponibile ..."
 		else
-		    echo "Rete dispobile ;)"
+		    echo "Network Ready ;)"
 		fi  
 
 		if $(testConnection wlan0) || $(testConnection eth0) || [ $COUNTER -eq $MAX_ATTEMPTS ] ; then
@@ -53,7 +53,7 @@ function sendMailFromRecipientFile() {
 
         if [ ! -f $recipient_file ];
         then
-                echo "Selected Recipient file: $recipient_file not found, mail not sent"
+                echo "Selected Recipient file: $recipient_file not found, mails not sent ... exit"
                 exit
         fi
 
@@ -80,7 +80,7 @@ function sendMailFromRecipientFile() {
 
 if [ -n "$1" ];
 then
-	echo "Send Mail from recipients"
+	echo "Send Mail from recipient"
 	sendMailFromRecipientFile $1
 else
     echo "[ usage ] recipient file needed: bash $0 recipient"
