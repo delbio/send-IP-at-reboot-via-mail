@@ -17,15 +17,21 @@ Per conoscere il proprio IP eseguire lo script:
 
     sh printIP.sh
 
-Per creare un crontab che segnali il nuovo IP della macchina dopo il riavvio ad un recipiente di indirizzi email, eseguite:
+Per notificare il nuovo IP della macchina via mail ad un insieme di indirizzi email, creare un file con la lista di destinatari desiderati:
 
-    bash init_crontab.sh $(pwd)/recipient
+    touch destinatari.txt
+    echo "email@dominio.it" >> destinatari.txt
+    echo "email1@dominio.com" >> destinatari.txt
+
+Il seguente script inizializzerà il crontab che, al riavvio, invierà l'IP via mail a tutti i destinatari:
+
+    bash init_crontab.sh $(pwd)/destinatari.txt
 
 Per testare il funzionamento basta eseguire:
 
     sudo reboot
     
-riverete una mail appena la macchina è disponibile.
+Ogni destinatario riceverà una mail appena la macchina è disponibile.
 
 Nota: eseguire il comando precedente nella cartella del progetto, per rispettare i riferimenti tra script
 
